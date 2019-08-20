@@ -1,0 +1,4 @@
+name: AITool
+main: com.zeus.pathfinder.Main
+version: 1.13.2
+author: zeus
