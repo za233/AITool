@@ -10,7 +10,6 @@ import net.minecraft.server.v1_14_R1.GenericAttributes;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftLivingEntity;;
 public class Attribute_Util implements Attribute_Util_Main
 {
-
 	@Override
 	public void setFollowRange(Entity e, double range) 
 	{

@@ -33,9 +33,14 @@ public class Navigation_Util implements Navigation_Util_Main
 	}
 
 	@Override
-	public boolean hasPath(LivingEntity target) 
+	public boolean noPath(LivingEntity target) 
 	{
 		return new AI_Util().getHandle(target).getNavigation().m();
 	}
-	
+	@Override
+	public boolean tryNavigationTo(LivingEntity target, double x, double y, double z, double speed) 
+	{
+		this.navigationTo(target, x, y, z, speed);
+		return this.noPath(target);
+	}
 }

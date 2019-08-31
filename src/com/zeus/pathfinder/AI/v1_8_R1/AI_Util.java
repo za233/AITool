@@ -13,12 +13,19 @@ import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 
 import com.zeus.pathfinder.AI.AI_Util_Main;
 import com.zeus.pathfinder.AI.AIItem.AbstractAIItem;
+import com.zeus.pathfinder.AI.v1_8_R1.AI_Util;
 
+import net.minecraft.server.v1_8_R1.PathfinderGoalBreakDoor;
+import net.minecraft.server.v1_8_R1.PathfinderGoalFleeSun;
+import net.minecraft.server.v1_8_R1.PathfinderGoalOpenDoor;
+import net.minecraft.server.v1_8_R1.PathfinderGoalMoveIndoors;
 import net.minecraft.server.v1_8_R1.EntityCreature;
 import net.minecraft.server.v1_8_R1.EntityInsentient;
 import net.minecraft.server.v1_8_R1.EntityLiving;
 import net.minecraft.server.v1_8_R1.PathfinderGoal;
 import net.minecraft.server.v1_8_R1.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_8_R1.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_8_R1.PathfinderGoalPanic;
 import net.minecraft.server.v1_8_R1.PathfinderGoalSelector;
 public class AI_Util implements AI_Util_Main
 {
@@ -166,5 +173,41 @@ public class AI_Util implements AI_Util_Main
 	{
 		
 		return ((CraftPlayer)e).getHandle().noDamageTicks;
+	}
+	@Override
+	public boolean addMeleeAttackAI(LivingEntity e,double speed,boolean flag,int prop)
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalMeleeAttack((EntityCreature) new AI_Util().getHandle(e),speed,flag),prop);
+		return true;
+	}
+	@Override
+	public boolean addPanicAI(LivingEntity e,double speed,int prop) 
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalPanic((EntityCreature) new AI_Util().getHandle(e),speed),prop);
+		return true;
+	}
+	@Override
+	public boolean addFleeSunAI(LivingEntity e,double speed,int prop) 
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalFleeSun((EntityCreature) new AI_Util().getHandle(e),speed),prop);
+		return true;
+	}
+	@Override
+	public boolean addOpenDoorAI(LivingEntity e,boolean flag,int prop)
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalOpenDoor((EntityInsentient) new AI_Util().getHandle(e),flag), prop);
+		return true;
+	}
+	@Override
+	public boolean addBreakDoorAI(LivingEntity e,int prop) 
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalBreakDoor((EntityInsentient) new AI_Util().getHandle(e)), prop);
+		return true;
+	}
+	@Override
+	public boolean addMoveInDoorAI(LivingEntity e,int prop)
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalMoveIndoors((EntityCreature) new AI_Util().getHandle(e)),prop);
+		return true;
 	}
 }

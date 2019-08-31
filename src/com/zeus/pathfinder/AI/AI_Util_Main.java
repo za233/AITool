@@ -25,4 +25,11 @@ public interface AI_Util_Main
 	public Entity getGoalTarget(LivingEntity e);
 	public int getLastDamageTicks(LivingEntity e);
 	public int getLastDamageTicks(Player e);
+	public boolean addMeleeAttackAI(LivingEntity e,double speed,boolean flag,int prop);
+	public boolean addPanicAI(LivingEntity e,double speed,int prop);
+	public boolean addFleeSunAI(LivingEntity e,double speed,int prop);   
+	public boolean addOpenDoorAI(LivingEntity e,boolean flag,int prop);   
+	public boolean addBreakDoorAI(LivingEntity e,int prop);
+	public boolean addMoveInDoorAI(LivingEntity e,int prop);
+	
 }

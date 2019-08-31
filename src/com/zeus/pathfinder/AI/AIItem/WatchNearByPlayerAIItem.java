@@ -9,16 +9,16 @@ import com.zeus.pathfinder.Manager.ControlManager;
 public class WatchNearByPlayerAIItem extends AbstractAIItem
 {
 	private LivingEntity livingEntity;
-	private double dist;
+	private double distance;
 	public WatchNearByPlayerAIItem(LivingEntity le,double distance)
 	{
 		this.livingEntity=le;
-		this.dist=distance;
+		this.distance=distance;
 	}
-	public Player getNearByPlayer(Location loc,double dist)
+	public Player getNearByPlayer(Location loc,double distance)
 	{
 		Player targetPlayer=null;
-		double dis=dist;
+		double dis=distance;
 		for(Player p:loc.getWorld().getPlayers())
 		{
 			if(p.getLocation().distance(loc)>dis)
@@ -36,13 +36,13 @@ public class WatchNearByPlayerAIItem extends AbstractAIItem
 	public boolean shouldExecute() 
 	{
 		
-		return this.livingEntity.isValid() && getNearByPlayer(livingEntity.getEyeLocation(),this.dist)!=null;
+		return this.livingEntity.isValid() && getNearByPlayer(livingEntity.getEyeLocation(),this.distance)!=null;
 	}
 	@Override
 	public void startExecute()
 	{
-		ControlManager ch=new ControlManager(this.livingEntity);
-		ch.lookTicks(getNearByPlayer(livingEntity.getEyeLocation(),this.dist).getEyeLocation().getX(),getNearByPlayer(livingEntity.getEyeLocation(),this.dist).getEyeLocation().getY(),getNearByPlayer(livingEntity.getEyeLocation(),this.dist).getEyeLocation().getZ());
+		ControlManager controlManager=new ControlManager(this.livingEntity);
+		controlManager.lookTicks(getNearByPlayer(livingEntity.getEyeLocation(),this.distance).getEyeLocation().getX(),getNearByPlayer(livingEntity.getEyeLocation(),this.distance).getEyeLocation().getY(),getNearByPlayer(livingEntity.getEyeLocation(),this.distance).getEyeLocation().getZ());
 	}
 	@Override 
 	public boolean continueExecute()
