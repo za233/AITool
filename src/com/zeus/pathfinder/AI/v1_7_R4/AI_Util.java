@@ -19,6 +19,7 @@ import com.zeus.pathfinder.AI.v1_7_R4.PathfinderGoalInterface;
 import net.minecraft.server.v1_7_R4.PathfinderGoalBreakDoor;
 import net.minecraft.server.v1_7_R4.PathfinderGoalFleeSun;
 import net.minecraft.server.v1_7_R4.PathfinderGoalOpenDoor;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMoveIndoors;
 import net.minecraft.server.v1_7_R4.EntityCreature;
 import net.minecraft.server.v1_7_R4.EntityInsentient;
 import net.minecraft.server.v1_7_R4.EntityLiving;
@@ -37,7 +38,6 @@ public class AI_Util implements AI_Util_Main
 		f.setAccessible(true);
 		PathfinderGoalSelector gs=new PathfinderGoalSelector((e.world != null) && (e.world.methodProfiler != null) ? e.world.methodProfiler : null);
 		f.set(e,gs);
-		//Main.debug("KillGoalSelector:"+f);
 	}
 	private void KillTargetSelector(EntityInsentient e) throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
 	{
@@ -226,6 +226,12 @@ public class AI_Util implements AI_Util_Main
 	public boolean addBreakDoorAI(LivingEntity e,int prop) 
 	{
 		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalBreakDoor((EntityInsentient) new AI_Util().getHandle(e)), prop);
+		return true;
+	}
+	@Override
+	public boolean addMoveInDoorAI(LivingEntity e,int prop)
+	{
+		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalMoveIndoors((EntityCreature) new AI_Util().getHandle(e)),prop);
 		return true;
 	}
 }
