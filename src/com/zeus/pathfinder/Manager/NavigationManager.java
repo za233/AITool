@@ -27,8 +27,8 @@ public class NavigationManager
 	{
 		Main.nms_nav.ticks(this.target);
 	}
-	public boolean hasPath()
+	public boolean noPath()
 	{
-		return Main.nms_nav.hasPath(this.target);
+		return Main.nms_nav.noPath(this.target);
 	}
 }

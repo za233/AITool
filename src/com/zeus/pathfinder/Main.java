@@ -1,6 +1,7 @@
 package com.zeus.pathfinder;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.zeus.pathfinder.AI.AI_Util_Main;
@@ -15,6 +16,11 @@ public class Main extends JavaPlugin
 	static public Navigation_Util_Main nms_nav;
 	static public Control_Util_Main nms_control;
 	static public Attribute_Util_Main nms_attr;
+	static public String versionString;
+	static public Plugin getMain()
+	{
+		return Bukkit.getPluginManager().getPlugin("AITool");
+	}
 	public void onEnable()
 	{
 		this.getLogger().info("AITool已被加载！");
@@ -27,7 +33,7 @@ public class Main extends JavaPlugin
 			nms_attr=new com.zeus.pathfinder.AI.v1_14_R1.Attribute_Util();
 			this.getLogger().info("当前适用版本:1.14.4.");
 		}
-		if(version.equalsIgnoreCase("v1_13_R2"))
+		else if(version.equalsIgnoreCase("v1_13_R2"))
 		{
 			nms_ai=new com.zeus.pathfinder.AI.v1_13_R2.AI_Util();
 			nms_nav=new com.zeus.pathfinder.AI.v1_13_R2.Navigation_Util();
@@ -107,11 +113,11 @@ public class Main extends JavaPlugin
 			nms_attr=new com.zeus.pathfinder.AI.v1_7_R4.Attribute_Util();
 			this.getLogger().info("当前适用版本:1.7.10.");
 		}
+		Main.versionString=version;
 	}
 	public void onDisable()
 	{
 		this.getLogger().info("AITool已被卸载！");
-		//this.getLogger().info("当前适用版本:1.13.2,请检查版本是否正确.");
 	}
 	public static void debug(String string) 
 	{

@@ -74,4 +74,20 @@ public class AIManager
 	{
 		return Main.nms_ai.getLastDamageTicks(this.targetEntity);
 	}
+	public boolean addFleeSunAI(double speed,int prop)
+	{
+		return Main.nms_ai.addFleeSunAI(this.targetEntity,speed,prop);
+	}
+	public boolean addMeleeAttackAI(double speed,boolean flag,int prop)
+	{
+		return Main.nms_ai.addMeleeAttackAI(this.targetEntity,speed,flag,prop);
+	}
+	public boolean addOpenDoorAI(boolean flag,int prop)
+	{
+		return Main.nms_ai.addOpenDoorAI(this.targetEntity,flag,prop);
+	}
+	public boolean addBreakDoorAI(int prop)
+	{
+		return Main.nms_ai.addBreakDoorAI(this.targetEntity,prop);
+	}
 }
